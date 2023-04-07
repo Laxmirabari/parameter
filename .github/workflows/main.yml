@@ -16,7 +16,7 @@ on:
         type: boolean
       tags:
         description: 'Test scenario tags 1'
-        required: false
+        required: true
         type: string
       environment:
         description: 'Environment to run tests against'
