@@ -10,7 +10,7 @@ on:
           - info
           - warning
           - debug
-      print_tags:
+      build_with_parameter:
         description: 'True to print to STDOUT'
         required: true
         type: boolean
@@ -24,7 +24,7 @@ on:
         required: true
 
 jobs:
-  print-tag:
+  build_with_parameter:
     runs-on: ubuntu-latest
     if:  ${{ inputs.print_tags }} 
     steps:
