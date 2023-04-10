@@ -13,7 +13,11 @@ on:
       print_tags:
         description: 'True to print to STDOUT'
         required: true
-        type: boolean
+        default: 'true'
+        type: choice
+        options:
+          - true
+          - false
       tags:
         description: 'Test scenario tags 1'
         required: true
@@ -28,5 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     if:  ${{ inputs.print_tags }} 
     steps:
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are ${{ inputs.tags}}
       - name: Print the input tag to STDOUT
         run: echo  The tags are ${{ inputs.environment}}
