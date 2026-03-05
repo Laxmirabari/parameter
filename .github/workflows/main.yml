@@ -1,4 +1,4 @@
-name: Demo Dispatch
+name: Test Cycle Dispatch
 
 on:
   workflow_dispatch:
@@ -12,18 +12,88 @@ on:
           - info
           - warning
           - debug
+
       tags:
-        description: "Test scenario tags"
+        description: "Test scenario tags (comma-separated or JSON array string)"
         required: true
         type: string
+
       environment:
         description: "Environment to run tests against"
         required: true
         type: string
+
+      # === Test cycle inputs (mapped from your $testcycle.<field> list) ===
       testcycleKey:
-        description: "Test cycle key to run tests against"
+        description: "The unique identifier key for a specific test cycle (maps $testcycle.key)"
         required: true
         type: string
+
+      testcycleId:
+        description: "System-generated identifier (UID) for the test cycle (maps $testcycle.id)"
+        required: false
+        type: string
+
+      testcycleProjectKey:
+        description: "Project key associated with the test cycle (maps $testcycle.projectkey)"
+        required: false
+        type: string
+
+      testcycleLabel:
+        description: "Labels associated with the test cycle (comma-separated) (maps $testcycle.label)"
+        required: false
+        type: string
+
+      testcycleComponent:
+        description: "Components associated with the test cycle (comma-separated) (maps $testcycle.component)"
+        required: false
+        type: string
+
+      testcycleFixVersion:
+        description: "Fix version linked to the test cycle (maps $testcycle.fixversion)"
+        required: false
+        type: string
+
+      testcycleSprint:
+        description: "Sprint associated with the test cycle (maps $testcycle.sprint)"
+        required: false
+        type: string
+
+      testcyclePlannedStartDate:
+        description: "Planned start date (ISO 8601, e.g., 2026-03-05) (maps $testcycle.plannedstartdate)"
+        required: false
+        type: string
+
+      testcyclePlannedEndDate:
+        description: "Planned end date (ISO 8601, e.g., 2026-03-20) (maps $testcycle.plannedenddate)"
+        required: false
+        type: string
+
+      testcyclePriority:
+        description: "Priority assigned to the test cycle (maps $testcycle.priority)"
+        required: false
+        type: string
+
+      testcycleStatus:
+        description: "Current status of the test cycle (maps $testcycle.status)"
+        required: false
+        type: string
+
+      # Custom fields
+      testcycleSingleUserDropDown:
+        description: "Custom field: Single User Drop Down (maps $testcycle.Single.User.Drop.Down)"
+        required: false
+        type: string
+
+      testcycleMultiUserDropDown:
+        description: "Custom field: Multi User Drop Down (maps $testcycle.Multi.user.drop.down)"
+        required: false
+        type: string
+
+      testcycleBuildWithParameter:
+        description: "Custom field: Build with parameter (maps $testcycle.build.with.parameter)"
+        required: false
+        type: boolean
 
 jobs:
   log-the-inputs:
@@ -34,9 +104,38 @@ jobs:
           echo "Log level: $LEVEL"
           echo "Tags: $TAGS"
           echo "Environment: $ENVIRONMENT"
-          echo "Testcycle key: $TESTCYCLE_KEY"
+          echo "Testcycle.key: $TESTCYCLE_KEY"
+          echo "Testcycle.id: $TESTCYCLE_ID"
+          echo "Testcycle.projectkey: $TESTCYCLE_PROJECTKEY"
+          echo "Testcycle.label: $TESTCYCLE_LABEL"
+          echo "Testcycle.component: $TESTCYCLE_COMPONENT"
+          echo "Testcycle.fixversion: $TESTCYCLE_FIXVERSION"
+          echo "Testcycle.sprint: $TESTCYCLE_SPRINT"
+          echo "Testcycle.plannedstartdate: $TESTCYCLE_PLANNED_START_DATE"
+          echo "Testcycle.plannedenddate: $TESTCYCLE_PLANNED_END_DATE"
+          echo "Testcycle.priority: $TESTCYCLE_PRIORITY"
+          echo "Testcycle.status: $TESTCYCLE_STATUS"
+          echo "Testcycle.Single.User.Drop.Down: $TESTCYCLE_SINGLE_USER_DROPDOWN"
+          echo "Testcycle.Multi.user.drop.down: $TESTCYCLE_MULTI_USER_DROPDOWN"
+          echo "Testcycle.build.with.parameter: $TESTCYCLE_BUILD_WITH_PARAMETER"
         env:
           LEVEL: ${{ inputs.logLevel }}
           TAGS: ${{ inputs.tags }}
           ENVIRONMENT: ${{ inputs.environment }}
+
           TESTCYCLE_KEY: ${{ inputs.testcycleKey }}
+          TESTCYCLE_ID: ${{ inputs.testcycleId }}
+          TESTCYCLE_PROJECTKEY: ${{ inputs.testcycleProjectKey }}
+          TESTCYCLE_LABEL: ${{ inputs.testcycleLabel }}
+          TESTCYCLE_COMPONENT: ${{ inputs.testcycleComponent }}
+          TESTCYCLE_FIXVERSION: ${{ inputs.testcycleFixVersion }}
+          TESTCYCLE_SPRINT: ${{ inputs.testcycleSprint }}
+          TESTCYCLE_PLANNED_START_DATE: ${{ inputs.testcyclePlannedStartDate }}
+          TESTCYCLE_PLANNED_END_DATE: ${{ inputs.testcyclePlannedEndDate }}
+          TESTCYCLE_PRIORITY: ${{ inputs.testcyclePriority }}
+          TESTCYCLE_STATUS: ${{ inputs.testcycleStatus }}
+
+          TESTCYCLE_SINGLE_USER_DROPDOWN: ${{ inputs.testcycleSingleUserDropDown }}
+          TESTCYCLE_MULTI_USER_DROPDOWN: ${{ inputs.testcycleMultiUserDropDown }}
+          TESTCYCLE_BUILD_WITH_PARAMETER: ${{ inputs.testcycleBuildWithParameter }}
+``
