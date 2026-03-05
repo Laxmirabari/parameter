@@ -16,7 +16,11 @@ on:
         type: string
       environment:
         description: 'Environment to run tests against'
-        type: arrays
+        type: string
+        required: true
+      testcycle key:
+        description: 'testcycle key to run tests against'
+        type: string
         required: true
 
 jobs:
@@ -31,3 +35,4 @@ jobs:
           LEVEL: ${{ inputs.logLevel }}
           TAGS: ${{ inputs.tags }}
           ENVIRONMENT: ${{ inputs.environment }}
+          TESTCYCLE KEY: ${{ inputs.testcycle.key }}
