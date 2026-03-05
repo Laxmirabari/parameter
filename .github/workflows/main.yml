@@ -138,4 +138,3 @@ jobs:
           TESTCYCLE_SINGLE_USER_DROPDOWN: ${{ inputs.testcycleSingleUserDropDown }}
           TESTCYCLE_MULTI_USER_DROPDOWN: ${{ inputs.testcycleMultiUserDropDown }}
           TESTCYCLE_BUILD_WITH_PARAMETER: ${{ inputs.testcycleBuildWithParameter }}
-``
