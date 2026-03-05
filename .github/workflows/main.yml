@@ -93,7 +93,7 @@ on:
       testcycleBuildWithParameter:
         description: "Custom field: Build with parameter (maps $testcycle.build.with.parameter)"
         required: false
-        type: boolean
+        type: string
 
 jobs:
   log-the-inputs:
